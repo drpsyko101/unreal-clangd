@@ -118,7 +118,7 @@ export function error(message: string) {
 	if (!outputChannel) {
 		return;
 	}
-	_log("error", message, { modal: true });
+	_log("error", message, { showModal: true });
 }
 
 export function warn(message: string) {

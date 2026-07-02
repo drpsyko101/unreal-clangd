@@ -57,13 +57,23 @@ export async function createUnrealClangdProject(): Promise<"ran" | "cancelled"> 
 
     const creatingProjectAfterReload = ueClangdConfig.get<string>(consts.settingNames.unrealClangd.settings['utility.createProjectOnStartup']);
     if (!creatingProjectAfterReload && !getIsWantingToCreate()) {
-        const installTypeResult = await vscode.window.showWarningMessage(`${tr.WHAT_INSTALL_TYPE} ${tr.FULL_OR_PARTIAL}`, { modal: false }, tr.BTTN_FULL, tr.BTTN_PARTIAL);
+        const options: vscode.QuickPickItem[] = [
+            {
+                label: tr.BTTN_FULL,
+                description: tr.FULL_DESC,
+            },
+            {
+                label: tr.BTTN_PARTIAL,
+                description: tr.PARTIAL_DESC,
+            }
+        ];
+        const installTypeResult = await vscode.window.showQuickPick(options, { placeHolder: tr.WHAT_INSTALL_TYPE });
 
         if (!installTypeResult) {
             return "cancelled";
         }
 
-        if (installTypeResult === tr.BTTN_FULL) {
+        if (installTypeResult.label === tr.BTTN_FULL) {
             await ueClangdConfig.update(consts.settingNames.unrealClangd.settings['creation.overwrite'], consts.OVERWRITE_FULL, vscode.ConfigurationTarget.WorkspaceFolder);
         }
         else {

@@ -102,13 +102,13 @@ async function addFilesToUESourceCompileCommands(
         return;
     }
     
-    const ueCompileCommand = createUESourceCompileCommand(ueUri, projectUri, currentDocUri.fsPath, ccCompiler, rspPathRelative);
+    const ueCompileCommand = createUESourceCompileCommand(ueUri, projectUri, currentDocUri.fsPath, ccCompiler, rspPathRelative ?? "");
 
     ueSelfCompileCommands.push(ueCompileCommand);
 
     if (friendFileInfo === undefined) {
         console.log(`Adding file to UE compile commands: ${currentDocUri.fsPath}`);
-        console.log(`   Relative rsp path: ${rspPathRelative}`);
+        console.log(`   Relative rsp path: ${rspPathRelative ?? ""}`);
 
         const friendUri: vscode.Uri | undefined = await findFriendUri(currentDocUri);
         if (friendUri) {

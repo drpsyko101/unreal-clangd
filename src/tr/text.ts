@@ -219,4 +219,6 @@ export const END_CREATION_path = "End creation:"; /** CONTEXT: file path */
 export const ADD_FILES_TO_PROJ_SRC_TO_CORRECT_ERR = "Once you add files to your project's Source folder the above error will correct itself.";
 
 export const WHAT_INSTALL_TYPE = "Choose a project install type.";
+export const FULL_DESC = "Overwrite any file and setting.";
+export const PARTIAL_DESC = "Setup anything not already set or created.";
 export const FULL_OR_PARTIAL = "Full : Overwrite any file and setting.\nPartial : Setup anything not already set or created.";
